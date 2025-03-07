@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    container_name: ocpp_backend
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    env_file:
+      - .env 
+    command: >
+      sh -c "python manage.py migrate &&
+             daphne -b 0.0.0.0 -p 8001 ocpp_server.asgi:application & 
+             gunicorn --bind 0.0.0.0:8000 ocpp_server.wsgi:application"
+
+    volumes:
+      - .:/app
+      - static_files:/app/static_files
+      - media:/app/media
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: ocpp
+      POSTGRES_USER: ocpp_user
+      POSTGRES_PASSWORD: ocpp_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    container_name: redis_server
+    restart: always
+    ports:
+      - "6378:6379"
+
+volumes:
+  postgres_data:
+  static_files:
+  media:
+  

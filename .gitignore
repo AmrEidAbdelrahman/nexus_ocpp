@@ -1,0 +1,27 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+/venv
+/.idea
+.env
+
+*.db
+*.sqlite3
+.vscode
+data/
+logs/
+
+Only for Development only
+**/migrations/**
+**/migrations/*.pyc
+!**/migrations
+!**/migrations/__init__.py
+
+data/**
+staticfiles/**
+static/
+media/
+
+debug.log
