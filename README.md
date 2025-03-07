@@ -111,8 +111,8 @@ docker-compose exec web python manage.py createsuperuser
 |-------------|---------|-----------------|
 | `/api/auth/registration/` | `POST` | Register a new user |
 | `/api/auth/login/` | `POST` | Log in to get JWT |
-| `/api/remote-start/` | `POST` | Start a charging session remotely |
-| `/api/remote-stop/` | `POST` | Stop a session remotely |
+| `/api/remote-transactions/start/` | `POST` | Start a charging session remotely |
+| `/api/remote-transactions/stop/` | `POST` | Stop a session remotely |
 
 ---
 
