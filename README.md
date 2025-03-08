@@ -18,8 +18,8 @@ It supports **BootNotification, Authorize, StartTransaction, StopTransaction, Re
 ## **🔹 Installation & Setup**
 ### **1️⃣ Clone the Repository**
 ```bash
-git clone https://github.com/your-repo/ocpp-backend.git
-cd ocpp-backend
+git clone https://github.com/AmrEidAbdelrahman/nexus_ocpp.git
+cd nexus_ocpp
 ```
 
 ### **2️⃣ Set Up Environment Variables**
