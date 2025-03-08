@@ -37,6 +37,7 @@ docker-compose up --build -d
 
 ### **4️⃣ Apply Migrations & Create Superuser**
 ```bash
+docker-compose exec web python manage.py makemigrations
 docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py createsuperuser
 ```
@@ -104,6 +105,18 @@ docker-compose exec web python manage.py createsuperuser
 [3, "12348", {"idTagInfo": {"status": "Accepted"}}]
 ```
 
+### **5 send HeartBeat signal (`HeartBeat`)**
+```json
+[2, "12346", "Heartbeat", {}]
+```
+
+✅ **Expected Response**
+```json
+[3,"12346",{"currentTime":"2025-03-07T19:04:14.189565+00:00"}]
+```
+
+
+
 ---
 
 ## **🔹 API Endpoints**
@@ -111,6 +124,9 @@ docker-compose exec web python manage.py createsuperuser
 |-------------|---------|-----------------|
 | `/api/auth/registration/` | `POST` | Register a new user |
 | `/api/auth/login/` | `POST` | Log in to get JWT |
+| `/api/auth/logout/` | `POST` | Log out |
+| `/api/auth/token/verify` | `POST` |
+| `/api/auth/token/refresh` | `POST` |
 | `/api/remote-transactions/start/` | `POST` | Start a charging session remotely |
 | `/api/remote-transactions/stop/` | `POST` | Stop a session remotely |
 
